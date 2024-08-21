@@ -172,7 +172,7 @@ const getUnemploymentRates = async () => {
   }
 
   const seriesIds = intersectingCounties.value.map(county => `LAUCN${county.properties.GEOID}0000000003`);
-  const url = 'http://localhost:3001/api/publicAPI/v2/timeseries/data';
+  const url = 'https://api.bls.gov/publicAPI/v2/timeseries/data';
   const headers = { 'Content-Type': 'application/json' };
 
   const chunks = [];
