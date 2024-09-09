@@ -73,13 +73,14 @@ const createColorScale = (colors, steps) => {
 };
 
 const colorScale = createColorScale([
-  [255, 255, 204],
-  [199, 233, 180],
-  [127, 205, 187],
-  [65, 182, 196],
-  [29, 145, 192],
-  [34, 94, 168],
-  [12, 44, 132]
+  [255, 245, 235],
+  [254, 230, 206],
+  [253, 208, 162],
+  [253, 174, 107],
+  [253, 141, 60],
+  [241, 105, 19],
+  [217, 72, 1],
+  [140, 45, 4]
 ], 10);
 
 const getColor = (value, minValue, maxValue, alpha = 0.8) => {
@@ -172,7 +173,8 @@ const getUnemploymentRates = async () => {
   }
 
   const seriesIds = intersectingCounties.value.map(county => `LAUCN${county.properties.GEOID}0000000003`);
-  const url = 'https://api.bls.gov/publicAPI/v2/timeseries/data';
+  const apiBaseUrl = import.meta.env.VITE_APP_PROXY_URL || 'http://localhost:3001';
+  const url = `${apiBaseUrl}/api/publicAPI/v2/timeseries/data`;
   const headers = { 'Content-Type': 'application/json' };
 
   const chunks = [];

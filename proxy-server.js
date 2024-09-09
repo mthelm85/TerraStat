@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-const port = 3001; // You can use any available port
+const port = process.env.PROXY_PORT || 3001; // Use Heroku's provided port or 3001 as fallback
 
 app.use(bodyParser.json());
 app.use(cors()); // Enable CORS for all routes
@@ -20,6 +20,6 @@ app.post('/api/publicAPI/v2/timeseries/data', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Proxy server running at http://localhost:${port}`);
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Proxy server running on port ${port}`);
 });
