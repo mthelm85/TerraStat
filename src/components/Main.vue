@@ -174,7 +174,7 @@ const getUnemploymentRates = async () => {
 
   const seriesIds = intersectingCounties.value.map(county => `LAUCN${county.properties.GEOID}0000000003`);
   const apiBaseUrl = import.meta.env.VITE_APP_PROXY_URL || 'http://localhost:3001';
-  const url = `${apiBaseUrl}/api/publicAPI/v2/timeseries/data`;
+  const url = `${apiBaseUrl}/api/publicAPI/v2/timeseries/data`.replace(/([^:]\/)\/+/g, "$1");
   const headers = { 'Content-Type': 'application/json' };
 
   const chunks = [];
